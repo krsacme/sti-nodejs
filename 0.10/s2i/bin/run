@@ -4,7 +4,11 @@ set -e
 
 # Runs the nodejs application server.
 run_node() {
-  exec npm start -d
+  #exec npm start -d
+  # Etherpad specific run command
+  # Note that there are no NODEJS OPENSHIFT ENV vairables
+  # alwasy assing to 0.0.0.0:8080
+  exec ./bin/run.sh
 }
 
 # If the official dockerhub node image is used, skip the SCL setup below
@@ -18,4 +22,5 @@ fi
 #
 [ "$1" == "--debug" ] && exec /bin/bash
 
+echo "Running node app via bin/run.sh file"
 run_node

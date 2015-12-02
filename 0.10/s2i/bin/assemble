@@ -21,8 +21,16 @@ set -e
 echo "---> Installing application source"
 cp -Rf /tmp/src/. ./
 
+#echo "---> Running prepare script on the repo"
+#FILE=.openshift/action_hooks/deploy ; [ -f $FILE ] && . $FILE
+
 echo "---> Building your Node application from source"
+cd src/
 npm install -d
+cd ../
 
 # Fix source directory permissions
 fix-permissions ./
+
+echo "---> Completed assemple script"
+

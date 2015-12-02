@@ -1,5 +1,7 @@
-NodeJS Docker images
-====================
+NodeJS Docker images (Etherpad Specifi)
+======================================
+REPO URL - https://github.com/krsacme/etherpad-lite.git
+
 
 This repository contains the source for building various versions of
 the Node.JS application as a reproducible Docker image using
