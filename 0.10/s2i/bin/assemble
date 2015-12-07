@@ -25,9 +25,7 @@ cp -Rf /tmp/src/. ./
 #FILE=.openshift/action_hooks/deploy ; [ -f $FILE ] && . $FILE
 
 echo "---> Building your Node application from source"
-cd src/
 npm install -d
-cd ../
 
 # Fix source directory permissions
 fix-permissions ./
