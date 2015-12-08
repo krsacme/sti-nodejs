@@ -11,6 +11,33 @@ run_node() {
   exec ./bin/run.sh
 }
 
+echo "---> Modifying settings.json (sql) in run script..."
+echo "---> USER $MYSQL_USER"
+
+
+sed -i s/OPENSHIFT_DB_USER/$MYSQL_USER/g settings.json
+sed -i s/OPENSHIFT_DB_PASS/$MYSQL_PASSWORD/g settings.json
+sed -i s/OPENSHIFT_DB_NAME/$MYSQL_DATABASE/g settings.json
+
+
+echo $DATABASE_SERVICE_NAME
+DB_CAPS=`echo $DATABASE_SERVICE_NAME | tr '[:lower:]' '[:upper:]'`
+echo $DB_CAPS
+DB_CAPS_HOST=$DB_CAPS"_SERVICE_HOST"
+echo $DB_CAPS_HOST
+DB_CAPS_PORT=$DB_CAPS"_SERVICE_PORT"
+echo $DB_CAPS_PORT
+HOST=`export | grep $DB_CAPS_HOST= | awk '{print $3}' | sed 's/^.*=//'`
+PORT=`export | grep $DB_CAPS_PORT= | awk '{print $3}' | sed 's/^.*=//'`
+HOST=`echo $HOST | sed 's/"\+//g'`
+PORT=`echo $PORT | sed 's/"\+//g'`
+echo $HOST
+echo $PORT
+
+sed -i s/OPENSHIFT_DB_HOST/$HOST/g settings.json
+sed -i s/OPENSHIFT_DB_PORT/$PORT/g settings.json
+
+
 # If the official dockerhub node image is used, skip the SCL setup below
 # and just run the nodejs server
 if [ -d "/usr/src/app" ]; then

@@ -24,11 +24,11 @@ cp -Rf /tmp/src/. ./
 #echo "---> Running prepare script on the repo"
 #FILE=.openshift/action_hooks/deploy ; [ -f $FILE ] && . $FILE
 
-echo "---> Building your Node application from source"
-npm install -d
+#echo "---> Building your Node application from source"
+#npm install -d
 
 # Fix source directory permissions
 fix-permissions ./
 
-echo "---> Completed assemple script"
+echo "---> Completed assemble script"
 
